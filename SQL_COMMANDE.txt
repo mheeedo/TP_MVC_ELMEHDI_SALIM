@@ -1,0 +1,58 @@
+create table client(
+    id int not null auto_increment,
+    email varchar(100),
+    nom varchar(30),
+    prenom varchar(30),
+    adresse varchar(100),
+    codepostal int,
+    ville varchar(30),
+    tel int,
+    mdp bigint,
+    primary key(id) );
+
+
+    create table categorie(
+    refcat int not null auto_increment,
+    cat varchar(100),
+    primary key (refcat) );
+
+
+    create table article(
+    ida int not null auto_increment,
+    ref varchar(100),
+    titre varchar(100),
+    auteur varchar(100),
+    refcat int,
+    img varchar(100),
+    prix int,
+    primary key (ida),
+    foreign key (refcat) references categorie(refcat) );
+
+
+    create table commande (
+    idc int not null auto_increment,
+    id int,
+    ida int,
+    primary key(idc),
+    foreign key (id) references client(id),
+    foreign key (ida) references article(ida) );
+
+insert into categorie(cat) values('jazz');
+insert into categorie(cat) values('rock');
+insert into categorie(cat) values('hiphop');
+
+
+insert into article(ref,titre,auteur,refcat,img,prix) values('1ABM','moaning','art blakey',1,'images/jazz_artblakey_moanin.jpg',80);
+ insert into article(ref,titre,auteur,refcat,img,prix) values('1JCBR','blue rain','john coltrane',1,'images/jazz_johncoltrane_bluerain.jpg',120);
+  insert into article(ref,titre,auteur,refcat,img,prix) values('1MDKOB','kind of blue','miles davis',1,'images/jazz_milesdavis_kindofblue.jpg',100);
+   insert into article(ref,titre,auteur,refcat,img,prix) values('1HSSFMF','song for my father','horace silver',1,'images/jazz_horacesilver_songformyfather.jpg',50);
+
+   insert into article(ref,titre,auteur,refcat,img,prix) values('3DKL','DAMN.','kendrick lamar',3,'images/hiphop_kendricklamar_damn.jpg',80);
+ insert into article(ref,titre,auteur,refcat,img,prix) values('3MB','not all heroes wear capes','metro boomin',3,'images/hiphop_metroboomin_notallheroeswearcapes.jpg',120);
+  insert into article(ref,titre,auteur,refcat,img,prix) values('3BPJ','the blueprint','jay-z',3,'images/hiphop_jayz_theblueprint.jpg',100);
+   insert into article(ref,titre,auteur,refcat,img,prix) values('3ATS','astroworld','travis scott',3,'images/hiphop_travisscott_astroworld.jpg',50);
+
+   insert into article(ref,titre,auteur,refcat,img,prix) values('2DPF','dark side of the moon','pink floyd',2,'images/rock_floyd_dark.jpg',80);
+ insert into article(ref,titre,auteur,refcat,img,prix) values('2NN','nevermind','nirvana',2,'images/rock_nirvana_nevermind.jpg',120);
+  insert into article(ref,titre,auteur,refcat,img,prix) values('2PSB','pet sounds','the beach boys',2,'images/rock_thebeachboys_petsounds.jpg',100);
+   insert into article(ref,titre,auteur,refcat,img,prix) values('2SPB','sergeant pepper','the beatles',2,'images/sgt_pepper.jpeg',50);
